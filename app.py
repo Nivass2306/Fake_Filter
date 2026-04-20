@@ -16,6 +16,37 @@ from joblib import load
 
 app = Flask(__name__)
 
+# Call load_model explicitly so it runs globally on Vercel
+# Models will be pre-loaded on function startup
+def load_model():
+    """Load the trained models"""
+    global model, embeddings_model, model_status
+    
+    if MODEL_ENHANCED_PATH.exists():
+        try:
+            model = load(MODEL_ENHANCED_PATH)
+            model_status = "Enhanced ML Model loaded successfully ✓"
+            print(f"✓ Loaded enhanced model from {MODEL_ENHANCED_PATH}")
+        except Exception as e:
+            model_status = f"Error loading enhanced model: {e}"
+            print(model_status)
+    elif MODEL_PATH.exists():
+        try:
+            model = load(MODEL_PATH)
+            model_status = "ML Model loaded successfully ✓"
+            print(f"✓ Loaded model from {MODEL_PATH}")
+        except Exception as e:
+            model_status = f"Error loading model: {e}"
+            print(model_status)
+    
+    # Load embeddings model if available
+    if EMBEDDINGS_PATH.exists():
+        try:
+            embeddings_model = load(EMBEDDINGS_PATH)
+            print(f"✓ Loaded embeddings model from {EMBEDDINGS_PATH}")
+        except Exception as e:
+            print(f"⚠ Could not load embeddings model: {e}")
+
 # Model paths
 MODEL_PATH = Path("model.joblib")
 MODEL_ENHANCED_PATH = Path("model_enhanced.joblib")
@@ -101,34 +132,8 @@ def open_browser():
     time.sleep(1.5)
     webbrowser.open('http://127.0.0.1:5000')
 
-def load_model():
-    """Load the trained models"""
-    global model, embeddings_model, model_status
-    
-    if MODEL_ENHANCED_PATH.exists():
-        try:
-            model = load(MODEL_ENHANCED_PATH)
-            model_status = "Enhanced ML Model loaded successfully ✓"
-            print(f"✓ Loaded enhanced model from {MODEL_ENHANCED_PATH}")
-        except Exception as e:
-            model_status = f"Error loading enhanced model: {e}"
-            print(model_status)
-    elif MODEL_PATH.exists():
-        try:
-            model = load(MODEL_PATH)
-            model_status = "ML Model loaded successfully ✓"
-            print(f"✓ Loaded model from {MODEL_PATH}")
-        except Exception as e:
-            model_status = f"Error loading model: {e}"
-            print(model_status)
-    
-    # Load embeddings model if available
-    if EMBEDDINGS_PATH.exists():
-        try:
-            embeddings_model = load(EMBEDDINGS_PATH)
-            print(f"✓ Loaded embeddings model from {EMBEDDINGS_PATH}")
-        except Exception as e:
-            print(f"⚠ Could not load embeddings model: {e}")
+# Initialization of models at import time for Vercel
+load_model()
 
 def check_with_fact_check_api(text: str) -> dict:
     """Check text against Google Fact Check API"""
@@ -434,7 +439,6 @@ def get_history():
     return jsonify({"history": history[:20]})
 
 if __name__ == "__main__":
-    load_model()
     # Start browser in a separate thread
     threading.Thread(target=open_browser, daemon=True).start()
     app.run(debug=True, port=5000)
