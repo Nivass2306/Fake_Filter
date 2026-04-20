@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FakeFilter - Analysis Result</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <div class="app-shell">
+        <header>
+            <nav class="nav-bar">
+                <a href="/">Home</a>
+                <a href="/history">History</a>
+                <button id="theme-toggle" class="theme-toggle">Toggle Theme</button>
+            </nav>
+            <h1>Analysis Result</h1>
+        </header>
+
+        <main>
+            <section class="result-card" id="result-card">
+                <div class="result-item"><strong>Input:</strong> <span id="input-text"></span></div>
+                <div class="result-item"><strong>Verdict:</strong> <span id="verdict"></span></div>
+                <div class="result-item"><strong>Score:</strong> <span id="score"></span>%</div>
+                <div class="result-item"><strong>Explanation:</strong> <span id="explanation"></span></div>
+                <div class="result-item"><strong>Fake signals:</strong> <span id="fake-count"></span></div>
+                <div class="result-item"><strong>Source:</strong> <span id="source"></span></div>
+
+                <div id="fake-details">
+                    <h3>Why This Might Be Fake</h3>
+                    <p id="why-fake"></p>
+                    <h3>Correct Related News</h3>
+                    <p id="correct-news"></p>
+                    <button id="open-link">Open Related News</button>
+                    <button id="search-more-fake">Search for More Info</button>
+                </div>
+
+                <div id="real-details">
+                    <h3>More Details</h3>
+                    <p id="more-details"></p>
+                    <button id="open-link-real">Open News Source</button>
+                    <button id="search-more-real">Search for More Info</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Internship project prototype for FakeFilter: AI-Based News Verification.</p>
+        </footer>
+    </div>
+
+    <script src="/static/theme.js"></script>
+    <script src="/static/result.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FakeFilter - AI News Verification</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <div class="app-shell">
+        <header>
+            <nav class="nav-bar">
+                <a href="/">Home</a>
+                <a href="/result">Latest Result</a>
+                <a href="/history">History</a>
+                <button id="theme-toggle" class="theme-toggle">Toggle Theme</button>
+            </nav>
+            <div class="hero-copy">
+                <h1>FakeFilter</h1>
+                <p>AI news verification for your internship project with model-powered analysis and history tracking.</p>
+            </div>
+            <div id="status-message" class="status-message">Loading analysis engine...</div>
+        </header>
+
+        <main>
+            <section class="input-card">
+                <label for="news-text">Paste news text or headline</label>
+                <textarea id="news-text" rows="7" placeholder="Enter news content here..."></textarea>
+
+                <label for="news-url">Or enter a news URL</label>
+                <input id="news-url" type="url" placeholder="https://example.com/news-story" />
+
+                <button id="analyze-button">Analyze News</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>Internship project prototype for FakeFilter: AI-Based News Verification.</p>
+        </footer>
+    </div>
+
+    <script src="/static/theme.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FakeFilter - Analysis Result</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link rel="stylesheet" href="/static/result_enhanced.css" />
+</head>
+<body>
+    <div class="app-shell">
+        <header>
+            <nav class="nav-bar">
+                <a href="/">Home</a>
+                <a href="/history">History</a>
+                <button id="theme-toggle" class="theme-toggle">🌓 Theme</button>
+            </nav>
+            <h1>📊 Analysis Result</h1>
+        </header>
+
+        <main>
+            <section class="result-container">
+                <!-- Verdict Card -->
+                <div class="verdict-card" id="verdict-card">
+                    <div class="verdict-score-display">
+                        <div class="score-circle" id="score-visual">
+                            <span class="score-text" id="score-number">0</span>%
+                        </div>
+                        <div class="verdict-info">
+                            <h2 id="verdict-text">Analyzing...</h2>
+                            <p id="confidence-text">Confidence: --</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Summary -->
+                <div class="info-card">
+                    <h3>📝 Input Summary</h3>
+                    <div class="text-preview" id="input-text"></div>
+                </div>
+
+                <!-- Main Explanation -->
+                <div class="info-card explanation-card">
+                    <h3>💡 Detailed Analysis</h3>
+                    <p id="explanation"></p>
+                </div>
+
+                <!-- Breakdown Scores -->
+                <div class="info-card scores-breakdown">
+                    <h3>📈 Score Breakdown</h3>
+                    <div class="score-breakdown-grid">
+                        <div class="score-item">
+                            <strong>ML Model</strong>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="ml-progress" style="width: 0%"></div>
+                            </div>
+                            <span id="ml-score">N/A</span>
+                        </div>
+                        <div class="score-item">
+                            <strong>Keyword Analysis</strong>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="keyword-progress" style="width: 0%"></div>
+                            </div>
+                            <span id="keyword-score">0%</span>
+                        </div>
+                        <div class="score-item">
+                            <strong>Language Patterns</strong>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="pattern-progress" style="width: 0%"></div>
+                            </div>
+                            <span id="pattern-score">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Probability Summary -->
+                <div class="info-card probability-card">
+                    <h3>🔢 Probability Summary</h3>
+                    <div class="probability-grid">
+                        <div><strong>Fake</strong>: <span id="fake-probability">--</span>%</div>
+                        <div><strong>Real</strong>: <span id="real-probability">--</span>%</div>
+                    </div>
+                </div>
+
+                <!-- Keyword Analysis -->
+                <div class="info-card keywords-card">
+                    <h3>🔑 Keywords Detected</h3>
+                    <div class="keywords-section">
+                        <div class="keyword-group">
+                            <h4>⚠ Suspicious Keywords</h4>
+                            <div class="tags-container" id="fake-keywords">
+                                <span class="tag tag-fake">None detected</span>
+                            </div>
+                        </div>
+                        <div class="keyword-group">
+                            <h4>✓ Reliable Keywords</h4>
+                            <div class="tags-container" id="reliable-keywords">
+                                <span class="tag tag-reliable">None detected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Language Patterns -->
+                <div class="info-card patterns-card">
+                    <h3>🔍 Language Patterns</h3>
+                    <div class="patterns-section">
+                        <div class="pattern-group">
+                            <h4>🚩 Suspicious Patterns</h4>
+                            <ul id="suspicious-patterns">
+                                <li>No suspicious patterns detected</li>
+                            </ul>
+                        </div>
+                        <div class="pattern-group">
+                            <h4>✓ Reliable Patterns</h4>
+                            <ul id="reliable-patterns">
+                                <li>No reliable patterns detected</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fact Check Database -->
+                <div class="info-card fact-check-card" id="fact-check-section" style="display: none;">
+                    <h3>✓ Fact Check Database Match</h3>
+                    <div class="fact-check-content">
+                        <p id="fact-check-explanation"></p>
+                        <p><strong>Source:</strong> <span id="fact-check-source"></span></p>
+                        <a class="info-link" id="fact-check-link" target="_blank">📚 Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Related Content / Resources -->
+                <div class="info-card resources-card">
+                    <h3 id="resources-title">📚 Related Resources</h3>
+                    <div class="resources-list" id="resources-container"></div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button id="search-google" class="btn btn-primary">🔍 Search on Google</button>
+                    <button id="check-snopes" class="btn btn-secondary">✓ Check on Snopes</button>
+                    <button id="back-button" class="btn btn-outline">← Back to Home</button>
+                </div>
+
+                <!-- Model Status -->
+                <div class="info-card model-status">
+                    <small id="model-status">Model Status: Loading...</small>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Internship project prototype for FakeFilter: AI-Based News Verification.</p>
+            <p><strong>⚠ Disclaimer:</strong> This tool uses AI and keyword analysis. Always verify important information with multiple reliable sources.</p>
+        </footer>
+    </div>
+
+    <script src="/static/theme.js"></script>
+    <script src="/static/result_enhanced.js"></script>
+</body>
+</html>

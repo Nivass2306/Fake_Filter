@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FakeFilter - Verification History</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <div class="app-shell">
+        <header>
+            <nav class="nav-bar">
+                <a href="/">Home</a>
+                <a href="/result">Latest Result</a>
+                <button id="theme-toggle" class="theme-toggle">Toggle Theme</button>
+            </nav>
+            <h1>Verification History</h1>
+        </header>
+
+        <main>
+            <section class="history-card">
+                <h2>Recent Verifications</h2>
+                <ul id="history-list"></ul>
+                <button id="clear-history">Clear History</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>Internship project prototype for FakeFilter: AI-Based News Verification.</p>
+        </footer>
+    </div>
+
+    <script src="/static/theme.js"></script>
+    <script src="/static/history.js"></script>
+</body>
+</html>
